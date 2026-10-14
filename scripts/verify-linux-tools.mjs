@@ -1,0 +1,15 @@
+import {LinuxSpeechSynthesis} from '../dist/src/adapters/media/linux-speech-synthesis.js';
+import fs from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
+import {execFileSync} from 'node:child_process';
+import assert from 'node:assert/strict';
+const directory=await fs.mkdtemp(path.join(os.tmpdir(),'pvs-fnos-tools-'));
+const output=path.join(directory,'speech.wav');
+const speech=new LinuxSpeechSynthesis();
+assert.ok((await speech.voices()).some(voice=>voice.name==='cmn'));
+await speech.synthesize({text:'本地语音测试。',voiceName:'cmn',rate:0,outputPath:output});
+const probe=JSON.parse(execFileSync('/usr/bin/ffprobe',['-v','error','-show_entries','format=duration','-of','json',output],{encoding:'utf8'}));
+assert.ok(Number(probe.format.duration)>0);
+assert.ok(execFileSync('/usr/bin/ffmpeg',['-version'],{encoding:'utf8'}).startsWith('ffmpeg version'));
+console.log(JSON.stringify({result:'PASS',ffmpeg:true,ffprobe:true,linuxSpeechWav:true,duration:Number(probe.format.duration)}));

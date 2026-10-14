@@ -1,0 +1,10 @@
+# Merge with your existing override; preserve other runtime mounts/environment.
+# Install the reviewed, separate sau-pvs runtime first; see publisher-runtime.md.
+services:
+  pvs:
+    environment:
+      PVS_SOCIAL_AUTO_UPLOAD_ROOT: /opt/pvs-publisher
+      PVS_DOUYIN_BROWSER_RUNTIME_HOME: /data/.runtime-secrets/publishing/social-auto-upload
+      PLAYWRIGHT_BROWSERS_PATH: /opt/pvs-publisher/browsers
+    volumes:
+      - ${PVS_PUBLISHER_RUNTIME_DIR:?set absolute reviewed publisher runtime directory}:/opt/pvs-publisher

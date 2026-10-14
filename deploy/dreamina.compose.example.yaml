@@ -1,0 +1,9 @@
+# Copy to compose.override.yaml after installing the official Linux runtime and reviewed config.
+services:
+  pvs:
+    environment:
+      DREAMINA_VERIFIED_RUNTIME_CONFIG: /data/config/dreamina-runtime.verified.json
+      DREAMINA_SKILL_PATH: /opt/pvs-dreamina/SKILL.md
+      PVS_DREAMINA_HOME: /data/dreamina-home
+    volumes:
+      - ${PVS_DREAMINA_RUNTIME_DIR:?set absolute official runtime directory}:/opt/pvs-dreamina:ro

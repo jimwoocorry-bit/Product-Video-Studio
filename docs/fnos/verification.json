@@ -1,0 +1,17 @@
+{
+  "originalWebBaselineFiles": 528,
+  "originalWebUnchanged": true,
+  "desktopExeAndBackendPatchUnchanged": true,
+  "oldNasServiceUnchanged": true,
+  "newTestUrl": "http://192.168.1.6:3092/",
+  "linuxUnitTestsPassed": 7,
+  "linuxIntegration": "PASS",
+  "containerRecreationPersistence": "PASS",
+  "bridgeRegistered": true,
+  "remoteBrowserVisualVerification": "PASS",
+  "linuxMediaAndSpeech": "PASS",
+  "historicalDataImported": false,
+  "douyinLoginPerformed": false,
+  "paidGeneration": false,
+  "publishing": false
+}

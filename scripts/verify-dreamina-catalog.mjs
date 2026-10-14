@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {createConfiguredDomesticJimengProvider} from '../dist/src/adapters/video/verified-dreamina-runtime-loader.js';
+import {DreaminaAgentCapabilityService} from '../dist/src/application/services/dreamina-agent-capability.js';
+const provider=createConfiguredDomesticJimengProvider();
+const registry=await new DreaminaAgentCapabilityService(provider).registry();
+const ops=['text2video','multimodal2video'].map(name=>registry.operations.find(op=>op.operation===name));
+assert.ok(ops.every(Boolean),'Missing generation capability');
+const models=ops[0].supportedModels.filter(model=>ops[1].supportedModels.includes(model));
+assert.ok(models.length,'No shared full-video models');
+assert.ok(ops.every(op=>op.models.some(model=>model.supportedResolutions.length)),'No resolution capabilities');
+console.log(JSON.stringify({ok:true,cliVersion:registry.cliVersion,models,ratios:registry.ratios,generationSubmitted:false}));

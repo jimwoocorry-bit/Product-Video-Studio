@@ -1,0 +1,13 @@
+.git
+node_modules
+dist
+data
+.runtime
+.env
+instance.env
+*.db
+*.sqlite*
+*.log
+vendor/douyin-cli/node_modules
+vendor/douyin-cli/config.json
+vendor/douyin-cli/storage

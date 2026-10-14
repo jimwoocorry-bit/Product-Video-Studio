@@ -1,0 +1,9 @@
+{
+  "source": "https://raw.githubusercontent.com/moby/profiles/main/seccomp/default.json",
+  "upstreamSha256": "6416b47770785a41ac59073cdc77d9fe98517df2799dc83ef207e622de3053f6",
+  "license": "Apache-2.0",
+  "localChanges": [
+    "Allow clone/setns/unshare for non-root Chromium sandbox, following Playwright Docker guidance"
+  ],
+  "deployedSha256": "f66516befc0c8407ad978702967b07df5a2e4d0f63591cf1d6c2a8a81c36e5a5"
+}
